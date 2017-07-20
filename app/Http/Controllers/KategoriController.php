@@ -21,7 +21,10 @@ class KategoriController extends Controller
         return Datatables::of($kategoris)
         ->addColumn('action',function($kategori){
             return view('datatable._action',[
+                'model'=>$kategori,
+                'form_url'=>route('kategoris.destroy',$kategori->id),
                 'edit_url'=>route('kategoris.edit',$kategori->id),
+                'confirm_message'=>'Yakin mau menghapus'. $kategori->name . '?'
                 ]);
         })->make(true);
        }  
@@ -106,6 +109,10 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!Kategori::destroy($id)) return redirect()->back();
+        Session::flash("flash_notification",[
+            "level"=>"success",
+            "message"=>"Kategori berhasil di hapus"]);
+        return redirect()->route('kategoris.index');
     }
 }
