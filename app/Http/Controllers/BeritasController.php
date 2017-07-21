@@ -8,6 +8,8 @@ use Yajra\Datatables\Datatables;
 use App\Berita;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\BeritaRequest;
+use App\Http\Requests\UpdateBeritaRequest;
 class BeritasController extends Controller
 {
     /**
@@ -58,15 +60,9 @@ class BeritasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BeritaRequest $request)
     {
-        $this->validate($request,[
-            'judul'=>'required|unique:beritas,judul',
-            'kategori_id'=>'required|exists:kategoris,id',
-            'isi_berita'=>'required|unique:beritas,isi_berita',
-            'cover'=>'image|max:2048'
-            ]);
-
+       
         $berita = Berita::create($request->except('cover'));
         if($request->hasFile('cover')){
             $uploaded_cover=$request->file('cover');
@@ -115,7 +111,7 @@ class BeritasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBeritaRequest $request, $id)
     {
        
         $berita = Berita::find($id);

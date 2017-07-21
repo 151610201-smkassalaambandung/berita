@@ -22,3 +22,4 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
  Route::resource('kategoris','kategoriController');
  Route::resource('berita','BeritasController');
 });
+// Route::get('/','GuestController@index');

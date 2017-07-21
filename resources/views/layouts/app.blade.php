@@ -16,6 +16,8 @@
     <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/jquery.dataTables.css')}}" rel="stylesheet">
     <link href="{{asset('/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/selectize.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/selectize.bootstrap3.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -71,7 +73,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Daftar</a></li>
+                            <!-- <li><a href="{{ url('/register') }}">Daftar</a></li> -->
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -108,6 +110,7 @@
       <script src="{{asset('/js/jquery.dataTables.min.js')}}"></script>
       <script src="{{asset('/js/dataTables.bootstrap.min.js')}}"></script>
       <script src="{{asset('/js/custom.js')}}"></script>
+      <script src="{{asset('/js/selectize.min.js')}}"></script>
       @yield('scripts')
 </body>
 </html>
